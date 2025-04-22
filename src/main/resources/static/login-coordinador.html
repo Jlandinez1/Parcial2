@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión como Coordinador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Iniciar Sesión como Coordinador</h1>
+    <form id="coordinador-login-form">
+        <label for="nombreUsuario">Nombre de Usuario:</label>
+        <input type="text" id="nombreUsuario" name="nombreUsuario" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <button type="button" onclick="iniciarSesion()">Iniciar Sesión</button>
+    </form>
+</div>
+
+<script>
+    async function iniciarSesion() {
+        const nombreUsuario = document.getElementById('nombreUsuario').value;
+        const contrasena = document.getElementById('contrasena').value;
+
+        const response = await fetch('/api/coordinadores/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombreUsuario, contrasena })
+        });
+
+        if (response.ok) {
+            alert('Inicio de sesión exitoso');
+            window.location.href = 'panel-coordinador.html'; // Redirige al panel del coordinador
+        } else {
+            alert('Credenciales inválidas');
+        }
+    }
+</script>
+
+</body>
+</html>

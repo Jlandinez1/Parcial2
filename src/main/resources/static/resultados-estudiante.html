@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tus Resultados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tus Resultados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Puntaje Total</th>
+                <th>Nivel</th>
+                <th>Comunicación Escrita</th>
+                <th>Razonamiento Cuantitativo</th>
+                <th>Lectura Crítica</th>
+                <th>Competencias Ciudadanas</th>
+                <th>Inglés</th>
+                <th>Ranking</th>
+            </tr>
+        </thead>
+        <tbody id="resultados-body">
+            <!-- Datos dinámicos -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Simula la carga de datos desde el backend
+    document.addEventListener("DOMContentLoaded", () => {
+        const resultadosBody = document.getElementById("resultados-body");
+        const datos = JSON.parse(localStorage.getItem("resultadosEstudiante")) || {};
+
+        resultadosBody.innerHTML = `
+            <tr>
+                <td>${datos.puntaje}</td>
+                <td>${datos.nivel}</td>
+                <td>${datos.comunicacionEscrita}</td>
+                <td>${datos.razonamientoCuantitativo}</td>
+                <td>${datos.lecturaCritica}</td>
+                <td>${datos.competenciasCiudadanas}</td>
+                <td>${datos.ingles}</td>
+                <td>${datos.ranking}</td>
+            </tr>
+        `;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión como Estudiante</title>
+    <style>
+        /* Similar al estilo del login del coordinador */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Iniciar Sesión como Estudiante</h1>
+    <form id="estudiante-login-form">
+        <label for="numeroDocumento">Número de Documento:</label>
+        <input type="text" id="numeroDocumento" name="numeroDocumento" required>
+
+        <button type="button" onclick="consultarResultados()">Consultar Resultados</button>
+    </form>
+</div>
+
+<script>
+    async function consultarResultados() {
+        const numeroDocumento = document.getElementById('numeroDocumento').value;
+
+        const response = await fetch(`/api/estudiantes/${numeroDocumento}`);
+        if (response.ok) {
+            window.location.href = 'resultados-estudiante.html'; // Redirige a los resultados del estudiante
+        } else {
+            alert('Estudiante no encontrado');
+        }
+    }
+</script>
+
+</body>
+</html>
