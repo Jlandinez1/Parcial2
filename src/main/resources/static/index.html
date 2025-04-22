@@ -3,23 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema ICFES</title>
+    <title>Sistema ICFES - Inicio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido al Sistema ICFES</h1>
-    <button onclick="consultarResultados()">Consultar Resultados</button>
 
-    <script>
-        async function consultarResultados() {
-            const numeroDocumento = prompt("Ingrese su número de documento:");
-            const response = await fetch(`/api/estudiantes/${numeroDocumento}`);
-            if (response.ok) {
-                const estudiante = await response.json();
-                alert(`Puntaje: ${estudiante.puntaje}, Nivel: ${estudiante.saberProPuntajeNivel}`);
-            } else {
-                alert("Estudiante no encontrado");
-            }
+<div class="container">
+    <h1>Bienvenido al Sistema ICFES</h1>
+    <p>Selecciona tu rol para continuar:</p>
+
+    <!-- Botones para iniciar sesión -->
+    <button onclick="iniciarSesion('coordinador')">Iniciar Sesión como Coordinador</button>
+    <button onclick="iniciarSesion('estudiante')">Iniciar Sesión como Estudiante</button>
+
+    <!-- Enlace para registrar un coordinador -->
+    <div class="register-link">
+        ¿Eres nuevo? <a href="registro-coordinador.html">Regístrate como Coordinador</a>
+    </div>
+</div>
+
+<script>
+    // Función para redirigir al usuario según el rol seleccionado
+    function iniciarSesion(rol) {
+        if (rol === 'coordinador') {
+            window.location.href = 'login-coordinador.html'; // Redirige a la página de inicio de sesión del coordinador
+        } else if (rol === 'estudiante') {
+            window.location.href = 'resultados.html'; // Redirige a la página de inicio de sesión del estudiante
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>

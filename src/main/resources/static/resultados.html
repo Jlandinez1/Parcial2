@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema ICFES</title>
+</head>
+<body>
+    <h1>Bienvenido al Sistema ICFES</h1>
+    <button onclick="consultarResultados()">Consultar Resultados</button>
+
+    <script>
+        async function consultarResultados() {
+            const numeroDocumento = prompt("Ingrese su número de documento:");
+            const response = await fetch(`/api/estudiantes/${numeroDocumento}`);
+            if (response.ok) {
+                const estudiante = await response.json();
+                alert(`Puntaje: ${estudiante.puntaje}, Nivel: ${estudiante.saberProPuntajeNivel}`);
+            } else {
+                alert("Estudiante no encontrado");
+            }
+        }
+    </script>
+</body>
+</html>
